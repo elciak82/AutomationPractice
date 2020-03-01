@@ -11,7 +11,7 @@ public class Driver {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
 //        options.addArguments("--kiosk");
-        System.setProperty("webdriver.chrome.driver", getConfiguration().getDriverLocation());
+        System.setProperty("webdriver.chrome.driver", getConfiguration().get(Configuration.DRIVER_LOCATION));
         return new ChromeDriver(options);
     }
 }

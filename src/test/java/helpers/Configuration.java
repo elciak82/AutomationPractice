@@ -4,29 +4,22 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class Configuration {
-    private static final String SITE_ADDRESS_PROPERTY = "test.site.url";
-    private static final String DRIVER_LOCATION_PROPERTY = "driver.location";
-    private static final String LOGIN = "login";
-    private static final String PASSWORD = "password";
+    public static final String SITE_ADDRESS = "test.site.url";
+    public static final String DRIVER_LOCATION = "driver.location";
+    public static final String LOGIN = "login";
+    public static final String PASSWORD = "password";
     private static Configuration configuration;
     private Properties properties;
-    private String siteURL;
-    private String driverLocation;
-    private String login;
-    private String password;
 
     public Configuration() {
         try {
             properties = new Properties();
             properties.load(Configuration.class.getClassLoader().getResourceAsStream("configuration.properties"));
+            properties.load(Configuration.class.getClassLoader().getResourceAsStream("configuration_data.properties"));
         } catch (
                 IOException exception) {
             throw new ExceptionInInitializerError(exception);
         }
-        siteURL = extractProperty(SITE_ADDRESS_PROPERTY);
-        driverLocation = extractProperty(DRIVER_LOCATION_PROPERTY);
-        login = extractProperty(LOGIN);
-        password = extractProperty(PASSWORD);
     }
 
     private String extractProperty(String propertyName) {
@@ -44,15 +37,7 @@ public class Configuration {
         return configuration;
     }
 
-    public String getSiteURL() {
-        return siteURL;
+    public String get(String property){
+        return extractProperty(property);
     }
-
-    public String getDriverLocation() {
-        return driverLocation;
-    }
-
-    public String getLogin() { return login; }
-
-    public String getPassword() { return  password; }
 }
