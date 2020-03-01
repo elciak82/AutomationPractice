@@ -3,10 +3,7 @@ package tests_selenium;
 import helpers.Configuration;
 import org.junit.*;
 import org.openqa.selenium.WebDriver;
-import pages.BlousesPage;
-import pages.HeaderPage;
-import pages.LoginPage;
-import pages.TshirstPage;
+import pages.*;
 
 import static helpers.Configuration.getConfiguration;
 import static helpers.Driver.initializeWebDriver;
@@ -16,6 +13,9 @@ public class Shopping_Tests {
     private HeaderPage headerPage;
     private BlousesPage blousesPage;
     private TshirstPage tshirstPage;
+    private PopupPage popupPage;
+    private Order_AddressPage orderAddressPage;
+    private Order_ShippingPage orderShippingPage;
 
     @Before
     public void setUp() {
@@ -28,6 +28,10 @@ public class Shopping_Tests {
 
         tshirstPage = new TshirstPage(driver);
         blousesPage = new BlousesPage(driver);
+        popupPage = new PopupPage(driver);
+        orderAddressPage = new Order_AddressPage(driver);
+        orderShippingPage = new Order_ShippingPage(driver);
+
     }
 
     @After
@@ -40,12 +44,17 @@ public class Shopping_Tests {
         headerPage.chooseFromMenuWomen(headerPage.tshirtsFromWomen);
 
         tshirstPage.addProductToCart(tshirstPage.product);
-        tshirstPage.continueShopping();
+        popupPage.continueShopping();
 
         headerPage.chooseFromMenuWomen(headerPage.blousesFromWomen);
 
         blousesPage.addProductToCart(blousesPage.product);
-        blousesPage.goToShoppingCart();
+        popupPage.goToShoppingCart().proceedToCheckout();
+
+        orderAddressPage.proceedToCheckout();
+        orderShippingPage.selectCheckbox();
+        orderShippingPage.proceedToCheckout();
+
 
 
         System.out.println("buyTshirtTest");

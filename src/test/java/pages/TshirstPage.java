@@ -20,12 +20,6 @@ public class TshirstPage extends GenericPage{
     @FindBy (css = "[title='Add to cart']")
     WebElement addProductToCart;
 
-    @FindBy (css = "#layer_cart div.clearfix")
-    WebElement productAddedToCartPopup;
-
-    @FindBy (css = ".continue")
-    WebElement continueShopping;
-
     public void chooseProduct(WebElement webElement){
         clickOnElement(webElement);
     }
@@ -35,8 +29,6 @@ public class TshirstPage extends GenericPage{
         clickOnElement(addProductToCart);
     }
 
-    public void continueShopping() {
-        clickOnElement(continueShopping);
-    }
+
 
 }

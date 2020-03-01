@@ -18,15 +18,6 @@ public class BlousesPage extends GenericPage{
     @FindBy (css = "[title='Add to cart']")
     WebElement addProductToCart;
 
-    @FindBy (css = "#layer_cart div.clearfix")
-    WebElement productAddedToCartPopup;
-
-    @FindBy (css = ".continue")
-    WebElement continueShopping;
-
-    @FindBy (css = "[title='Proceed to checkout']")
-    WebElement checkout;
-
     public void chooseProduct(WebElement webElement){
         clickOnElement(webElement);
     }
@@ -35,14 +26,4 @@ public class BlousesPage extends GenericPage{
         moveToElement(webElement);
         clickOnElement(addProductToCart);
     }
-
-    public void continueShopping() {
-        clickOnElement(continueShopping);
-    }
-
-    public ShoppingCartPage goToShoppingCart() {
-        clickOnElement(checkout);
-        return new ShoppingCartPage(driver);
-    }
-
 }
