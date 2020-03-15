@@ -25,9 +25,4 @@ public class LoginPage extends GenericPage{
         clickOnElement(submitLogin);
         return new MyAccountPage(driver);
     }
-
-
-
-
-
 }

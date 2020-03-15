@@ -16,6 +16,8 @@ public class Shopping_Tests {
     private PopupPage popupPage;
     private Order_AddressPage orderAddressPage;
     private Order_ShippingPage orderShippingPage;
+    private Order_PaymentPage orderPaymentPage;
+    private Order_SummaryPage orderSummaryPage;
 
     @Before
     public void setUp() {
@@ -31,7 +33,8 @@ public class Shopping_Tests {
         popupPage = new PopupPage(driver);
         orderAddressPage = new Order_AddressPage(driver);
         orderShippingPage = new Order_ShippingPage(driver);
-
+        orderSummaryPage = new Order_SummaryPage(driver);
+        orderPaymentPage = new Order_PaymentPage(driver);
     }
 
     @After
@@ -49,13 +52,13 @@ public class Shopping_Tests {
         headerPage.chooseFromMenuWomen(headerPage.blousesFromWomen);
 
         blousesPage.addProductToCart(blousesPage.product);
-        popupPage.goToShoppingCart().proceedToCheckout();
+        popupPage.goToShoppingCart();
+        orderSummaryPage.proceedToCheckout();
 
         orderAddressPage.proceedToCheckout();
         orderShippingPage.selectCheckbox();
         orderShippingPage.proceedToCheckout();
-
-
+        orderPaymentPage.payByBank();
 
         System.out.println("buyTshirtTest");
     }

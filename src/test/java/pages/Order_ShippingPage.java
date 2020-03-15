@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,11 +15,23 @@ public class Order_ShippingPage extends OrderPage{
     @FindBy (id ="cgv")
     WebElement checkboxAgree;
 
+    @FindBy (className = "fancybox-error")
+    WebElement fancyBoxError;
+
     public void selectCheckbox() {
         if(!checkboxAgree.isSelected()) {
             checkboxAgree.click();
         } else
             System.out.println("Checkbox is selected");
     }
+
+    public void checkFancyBoxError() {
+        proceedToCheckout();
+        fluentWaitForElementDisplayed(fancyBoxError);
+        String textFromFancyBoxError = fancyBoxError.getText();
+        Assert.assertEquals("You must agree to the terms of service before continuing.", textFromFancyBoxError);
+    }
+
+
     
 }

@@ -11,13 +11,19 @@ public class Order_PaymentPage extends OrderPage{
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy (className = ".bankwire")
+    @FindBy (css= ".bankwire")
     WebElement payByBank;
 
     @FindBy (className = ".cheque")
     WebElement payByCheque;
 
+    public void payByBank() {
+        clickOnElement(payByBank);
+    }
 
+    public void payByCheque() {
+        clickOnElement(payByCheque);
+    }
 
 
 

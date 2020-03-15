@@ -10,7 +10,7 @@ public class OrderPage extends GenericPage{
         super(driver);
         PageFactory.initElements(driver, this);
     }
-    @FindBy (css = "[title = 'Proceed to checkout']")
+    @FindBy (css = "[class = 'cart_navigation clearfix'] [title = 'Proceed to checkout'], [class='cart_navigation clearfix'] [type='submit']")
     WebElement checkout;
 
     @FindBy (css ="[title = 'Previous']")
